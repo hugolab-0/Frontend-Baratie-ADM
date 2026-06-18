@@ -66,14 +66,26 @@ const criarLinha = function (alimento) {
     tdKcal.textContent = calcularKcal(alimento)
 
     let tdUM = document.createElement('td')
-    tdUM.textContent = alimento.unidade_medida
+    tdUM.textContent = alimento.unidade_medida || "gramas"
 
-    // Criando a coluna de Ações com os botões (Faltava no teu código)
+    //ID do alimento para uma classe ou data-attribute no botão
     let tdAcoes = document.createElement('td')
     tdAcoes.innerHTML = `
-        <button type="button" class="button green">editar</button>
-        <button type="button" class="button red">excluir</button>
+        <button type="button" class="button green btn-editar" data-id=${alimento.id}>editar</button>
+        <button type="button" class="button red btn-deletar" data-id="${alimento.id}">excluir</button>
     `
+
+    //Adiciona o evento de clique diretamente ao botão de exclusão
+    const botaoDeletar = tdAcoes.querySelector('.btn-deletar')
+    botaoDeletar.addEventListener('click', function () {
+        deletarAlimentos(alimento.id)
+    })
+
+    //Adiciona o evento de clique diretamente ao botão de editar
+    const botaoEditar = tdAcoes.querySelector('.btn-editar')
+    botaoEditar.addEventListener('click', function () {
+        editarAlimento(alimento.id)
+    })
 
     tr.replaceChildren(
         tdNome,
@@ -81,7 +93,7 @@ const criarLinha = function (alimento) {
         tdCategoria,
         tdEnquadramento,
         tdCarboidratos,
-        tdProteinas, 
+        tdProteinas,
         tdLipidos,
         tdFibras,
         tdAcucarAdd,
@@ -100,25 +112,75 @@ const calcularKcal = function (alimento) {
     const carboidratos = Number(alimento.carboidratos_g)
     const lipidios = Number(alimento.lipidios_g)
     const result = ((proteina + carboidratos) * 4) + (lipidios * 9)
-    return result.toFixed(2) 
+    return result.toFixed(2)
 }
 
 //Função para exibir os resultados
-const result = async function(){
+const result = async function () {
     const tabela = document.getElementById('conteudoAlimentos')
-    tabela.innerHTML = '' 
+    tabela.innerHTML = ''
     const alimentos = await selectAllAlimentos()
-    
-    alimentos.forEach(function(alimento){
+
+    alimentos.forEach(function (alimento) {
         criarLinha(alimento)
     })
 }
 
 //Funcao para deletar alimentos
-const deletarAlimentos = async function(id){
+const deletarAlimentos = async function (id) {
     const url = `http://localhost:8080/v1/baratiefit/alimento/${id}`
+    const confirmacao = confirm("Tem certeza que deseja excluir um alimento?")
+    if (!confirmacao)
+        return
+    else {
+        try {
+            const response = await fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+
+            if (response.ok || response.status == 200) {
+                alert("Alimento deletado com sucesso!");
+                result(); // Recarrega a tabela de alimentos
+            } else {
+                alert(`Erro ao tentar excluir: Código ${response.status}`);
+            }
+        } catch (error) {
+            console.error("Erro na requisição de exclusão:", error)
+        }
+    }
+
 }
 
+//Funcao para editar alimentos
+const editarAlimento = async function (id) {
+    const url = `http://localhost:8080/v1/baratiefit/alimento/${id}`
+    const confirmacao = confirm("Tem certeza que deseja editar um alimento?")
+    if (!confirmacao)
+        return
+    else {
+        try {
+            const response = await fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+
+            if (response.ok || response.status == 200) {
+                alert("Alimento deletado com sucesso!");
+                result(); // Recarrega a tabela de alimentos
+            } else {
+                alert(`Erro ao tentar excluir: Código ${response.status}`);
+            }
+        } catch (error) {
+            console.error("Erro na requisição de exclusão:", error)
+        }
+    }
+
+}
 // Evento do click do botão
 document.getElementById('visualizarAlimentos')
     .addEventListener('click', result)

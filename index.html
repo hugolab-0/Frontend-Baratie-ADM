@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="./css/button.css">
     <link rel="stylesheet" href="./css/records.css">
     <link rel="stylesheet" href="./css/modal.css">
-    <script src="././arquivos js/app_adm.js" defer></script>
-    <script src="././arquivos js/open_close_modal.js" defer></script>
+    <script src="././arquivos js/main.js" defer></script>
     <title>CRUD</title>
 </head>
 
@@ -159,23 +158,6 @@
                 </thead>
                 <tbody id="conteudoAlimentos">
                     <tr>
-                        <td>Peito de frango</td>
-                        <td>Peito de frango sem pele cozido</td>
-                        <td>Proteína animal</td>
-                        <td>Aves</td>
-                        <td>32</td>
-                        <td>1</td>
-                        <td>3</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0.5</td>
-                        <td>159</td>
-                        <td>gramas</td>
-                        <td>
-                            <button type="button" class="button green">editar</button>
-                            <button type="button" class="button red">excluir</button>
-                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -187,7 +169,7 @@
                     <span class="modal-close" id="modalClose">&#10006;</span>
                 </header>
                 <form class="modal-form">
-                    <input type="text" class="modal-field" placeholder="Nome">
+                    <input type="text" class="modal-field" placeholder="Nome" required>
                     <input type="text" class="modal-field" placeholder="Modo de preparo">
                     <input type="text" class="modal-field" placeholder="Descrição">
                     <input type="text" class="modal-field" placeholder="Apoio de decisão">
@@ -228,8 +210,8 @@
                     </div>
                 </form>
                 <footer class="modal-footer">
-                    <button class="button green">Salvar</button>
-                    <button class="button red">Cancelar</button>
+                    <button class="button green" id="salvarRefeicao">Salvar</button>
+                    <button class="button red"   id="cancelarRefeicao">Cancelar</button>
                 </footer>
             </div>
         </div>
@@ -239,21 +221,19 @@
                     <h2>Novo alimento</h2>
                     <span class="modal-close" id="closeModalAlimento">&#10006;</span>
                 </header>
-                <form class="modal-form">
-                    <input type="text" class="modal-field" placeholder="Nome">
-                    <input type="text" class="modal-field" placeholder="Descricao">
-                    <input type="text" class="modal-field" placeholder="Categoria">
-                    <input type="text" class="modal-field" placeholder="Enquadramento">
-                    <input type="number" class="modal-field" placeholder="Qtde proteína: ">
-                    <input type="number" class="modal-field" placeholder="Qtde carboidrato: ">
-                    <input type="number" class="modal-field" placeholder="Qtde lipídios: ">
-                    <input type="number" class="modal-field" placeholder="Qtde açucar add: ">
-                    <input type="number" class="modal-field" placeholder="Qtde gord trans: ">
-                    <input type="number" class="modal-field" placeholder="Qtde gord sat: ">
+                <form id="formAlimento" class="modal-form">
+                    <input type="text" id="nome" class="modal-field" placeholder="Nome" required>
+                    <input type="text" id="descricao" class="modal-field" placeholder="Descricao">
+                    <input type="number" id="proteina" class="modal-field" placeholder="Qtde proteína: " required>
+                    <input type="number" id="carboidrato" class="modal-field" placeholder="Qtde carboidrato: " required>
+                    <input type="number" id="lipidio" class="modal-field" placeholder="Qtde lipídios: " required>
+                    <input type="number" id="acucarAdd" class="modal-field" placeholder="Qtde açucar add: " required>
+                    <input type="number" id="gordTrans" class="modal-field" placeholder="Qtde gord trans: " required>
+                    <input type="number" id="gordSat" class="modal-field" placeholder="Qtde gord sat: " required>
                     <div class="dados-estaticos">
                         <div class="grupo-campo">
                             <label>Unidade de medida</label>
-                            <select class="modal-field" required>
+                            <select id="selectUnidadeMedida" class="modal-field" required>
                                 <option value="" disabled selected>Selecione a unidade de medida...</option>
                                 <option value="gramas">gramas</option>
                                 <option value="unidades">unidades</option>
@@ -262,21 +242,21 @@
                         </div>
                         <div class="grupo-campo">
                             <label>Categoria:</label>
-                            <select id="selectCategoria" class="modal-field" required>
+                            <select id="selectCategoria" class="modal-field">
                                 <option value="" disabled selected>Selecione a Categoria...</option>
                             </select>
                         </div>
                         <div class="grupo-campo">
                             <label>Enquadramentos:</label>
-                            <select id="selectEnquadramento" class="modal-field" required>
+                            <select id="selectEnquadramento" class="modal-field">
                                 <option value="" disabled selected>Selecione o Enquadramento...</option>
                             </select>
                         </div>
                     </div>
                 </form>
                 <footer class="modal-footer">
-                    <button onclick="handleClick()" class="button green">Salvar</button>
-                    <button class="button red">Cancelar</button>
+                    <button id="salvarAlimento" class="button green">Salvar</button>
+                    <button id="cancelarAlimento" class="button red">Cancelar</button>
                 </footer>
             </div>
         </div>
