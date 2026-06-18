@@ -1,0 +1,64 @@
+.records {
+    display: none; /*Esconde a tabela logo de inicio*/
+    width: 100%;
+    user-select: none;
+    text-align: left; 
+    border-collapse: separate;
+}
+
+.records.active{
+    display: table; /*Mostra a tabela quando ocorrer o active no main.js*/
+}
+
+.records th {
+    height: 50px;
+    background-color: #E89C3D;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    color: white;
+    white-space: nowrap; /* Evita que o título do cabeçalho quebre linha feio */
+}
+
+.records td {
+    padding: 15px 20px;
+    vertical-align: top; /* Faz os textos alinharem todos pelo topo da linha */
+}
+
+/* Configuração para os textos longos*/
+.records td:nth-child(2), /* Coluna: Modo de preparo */
+.records td:nth-child(3), /* Coluna: Descrição */
+.records td:nth-child(4)  /* Coluna: Apoio de decisão */ {
+    white-space: normal;    /* Força o texto longo a quebrar linha */
+    line-height: 1.4;       /* Melhora a leitura do parágrafo */
+    text-align: justify;
+}
+
+/* Protege colunas de texto curto */
+.records td:nth-child(1),  /* Coluna: Nome */
+.records td:nth-child(11)  /* Coluna: U.M (Ex: gramas) */ {
+    white-space: nowrap;   /* Impede a quebra de linha e o texto jogado para baixo */
+}
+
+.records th:last-child,
+.records td:last-child {
+    padding: 10px;
+    min-width: 160px;
+    text-align: center;
+}
+
+.records .relacao-1-muitos{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.records .relacao-1-muitos p{
+    margin: 0;
+    padding-bottom: 4px;
+    font-size: 0.95rem;
+    color: #333333;
+}
+
+.records tr:hover {
+    background-color: #BEE6D8;
+}

@@ -1,0 +1,104 @@
+*{
+    margin:  0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header{
+    display: flex;
+    background-color: #F8F4EE;
+}
+
+main{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 90%;
+    margin: 5vh auto;
+    box-shadow: 2px 2px 10px;
+    gap: 20px;
+    padding: 50px;
+}
+
+.table-container{
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.dashboard-cards{
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.card-metrica {
+    flex: 1;
+    min-width: 220px;
+    background-color: #FDFBF7; 
+    border: 1px solid #EEDCC5;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    transition: transform 0.2s ease;
+}
+
+.card-metrica:hover {
+    transform: translateY(-3px); 
+}
+
+.card-metrica h3 {
+    font-size: 1rem;
+    color: #CC7744;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card-metrica .numero {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 4px;
+}
+
+.card-metrica span {
+    font-size: 0.85rem;
+    color: #888888;
+}
+
+.controle-painel {
+    background-color: #FAFAFA;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #EAEAEA;
+}
+
+.controle-painel h2 {
+    font-size: 1.2rem;
+    color: #444444;
+    margin-bottom: 15px;
+}
+
+.botoes {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+footer{
+    width: 100;
+    text-align: center;
+    font-weight: 200;
+    font-style: italic;
+    padding: 20px;
+}
