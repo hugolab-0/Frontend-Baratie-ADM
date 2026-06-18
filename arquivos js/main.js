@@ -136,16 +136,20 @@ const calcularKcal = function(alimento){
     return ((Number(proteina) + Number(carboidrato)) * 4 + (Number(lipidios) * 9)) 
 }
 
+//Limpar a tabela de alimentos para não carregar alimentos que já foram carregados
 const clearTable = () => {
     const rows = document.querySelectorAll('#tableAlimentos>tbody tr')
     rows.forEach(row => row.parentNode.removeChild(row))
 }
 
+//Carregar todos os alimentos cadastrados no banco de dados
 const updateTableAlimentos = () => {
     const db_alimento = readAlimento()
     clearTable()
     db_alimento.forEach(createRow)
 }
+
+//
 
 //Carregar os alimentos cadastrados
 updateTableAlimentos()
@@ -174,9 +178,13 @@ document.getElementById('visualizarRefeicoes')
 document.getElementById('salvarAlimento')
         .addEventListener('click', salvarAlimento);
 
-// Adicione também o evento para o botão Cancelar do Alimento para fechar o modal com segurança
+//Botão Cancelar do Alimento para fechar o modal com segurança
 document.getElementById('cancelarAlimento')
         .addEventListener('click', (cancel) => {
             cancel.preventDefault(); // Evita recarregar a página se disparar submit
             closeModalAlimento();
         });
+
+
+document.querySelector('#tableAlimentos>tbody')
+        .addEventListener('click', editDelete)
