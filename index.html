@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/button.css">
+    <link rel="stylesheet" href="./css/records.css">
+    <link rel="stylesheet" href="./css/modal.css">
+    <script src="././arquivos js/app_adm.js" defer></script>
+    <script src="././arquivos js/open_close_modal.js" defer></script>
+    <title>CRUD</title>
+</head>
+
+<body>
+    <header class="flex font-bold items-center text-4xl w-full h-25 m-auto gap-4 py-4 px-8">
+        <img src="img/Logo baratieFit.png" alt="Logo da empresa" class="h-12">
+        <h1 class="flex-1 text-left text-[#CC7744]">BaratieFit</h1>
+        <h2 class="flex-1 text-center text-[#CC7744]">Painel administrativo</h2>
+        <div class="flex-1 flex justify-end">
+            <button
+                class="w-[123px] h-[46px] bg-[#E89C3D] hover:bg-[#D08426] text-white font-medium rounded-xl transition-colors duration-300 ease-in-out flex justify-center">
+                sair
+            </button>
+        </div>
+    </header>
+    <main>
+        <div class="dashboard-cards">
+            <div class="card-metrica">
+                <h3>Refeições</h3>
+                <p class="numero">1</p>
+                <span>Cadastradas no sistema</span>
+            </div>
+            <div class="card-metrica">
+                <h3>Alimentos</h3>
+                <p class="numero">1</p>
+                <span>Itens no banco de dados</span>
+            </div>
+        </div>
+        <div class="controle-painel">
+            <h2>Ações do administrador</h2>
+            <div class="botoes">
+                <button type="button" class="button orange mobile" id="cadastrarRefeicao">Cadastrar refeição</button>
+                <button type="button" class="button orange mobile" id="cadastrarAlimento">Cadastrar alimento</button>
+                <button type="button" class="button orange mobile" id="visualizarAlimentos">Visualizar todos os alimentos</button>
+                <button type="button" class="button orange mobile" id="visualizarRefeicoes">Visualizar todas as refeições</button>
+            </div>
+        </div>
+        <div class="table-container">
+            <table class="records" id="tableRefeicoes">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Modo de preparo</th>
+                        <th>Descrição</th>
+                        <th>Apoio de decisão</th>
+                        <th>Público alvo</th>
+                        <th>Refeição</th>
+                        <th>Restrições</th>
+                        <th>Alimentos</th>
+                        <th>QTDE</th>
+                        <th>U.M</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Macarrão com Almôndegas</td>
+                        <td>
+                            Pré-aqueça a AirFryer em 200ºC por 5 minutos. Posicione as Almôndegas Bovina Seara Nature no
+                            cesto, regue com 1 fio de azeite e leve para assar por 10 minutos à 200ºC, virando na metade
+                            do
+                            tempo;
+                            Misture as almôndegas e Talharim Massa Leve no molho de tomate. Sirva em pratos, salpique o
+                            grana padano, as folhas de manjericão e sirva.
+                        </td>
+                        <td>
+                            A correria do dia a dia pede pratos rápidos para o cardápio, e se forem comidas rápidas e
+                            suculentas, melhor ainda! A receita de macarrão com almôndegas é uma ótima opção para quem
+                            tem
+                            pouco tempo para cozinhar e quer aproveitar ingredientes frescos e de qualidade na
+                            cozinha...
+                        </td>
+                        <td>
+                            A combinação da proteína da carne com as fibras do molho de tomate (e do macarrão integral,
+                            se
+                            utilizado) retarda a digestão. Isso significa que é um prato que mata a fome de verdade e
+                            evita
+                            que a pessoa sinta vontade de beliscar doces ou besteiras poucas horas após a refeição.
+                        </td>
+                        <td>
+                            <div class="relacao-1-muitos">
+                                <p><strong>Nome: </strong>Hipertrofia</p>
+                            </div>
+                        </td>
+    
+                        <td>
+                            <div class="relacao-1-muitos">
+                                <p><strong>Nome: </strong>Jantar</p>
+                                <p><strong>Nome: </strong>Almoço</p>
+                            </div>
+                        </td>
+    
+                        <td>
+                            <div class="relacao-1-muitos">
+                                <p><strong>Nome: </strong>none</p>
+                                <p><strong>Desc: </strong>none</p>
+                            </div>
+                        </td>
+    
+                        <td>
+                            <div class="relacao-1-muitos">
+                                <p><strong>Nome: </strong>Carne moída</p>
+                                <p><strong>Nome: </strong>Macarrão</p>
+                            </div>
+                        </td>
+    
+                        <td>
+                            <div class="relacao-1-muitos">
+                                <p>100</p>
+                                <p>300</p>
+                            </div>
+                        </td>
+    
+                        <td>
+                            <div class="relacao-1-muitos">
+                                <p>gramas</p>
+                                <p>gramas</p>
+                            </div>
+                        </td>
+    
+                        <td>
+                            <button type="button" class="button green">editar</button>
+                            <button type="button" class="button red">excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="records" id="tableAlimentos">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Categoria</th>
+                        <th>Enquadramento</th>
+                        <th>Qtde proteína</th>
+                        <th>Qtde carboidrato</th>
+                        <th>Qtde lipídios</th>
+                        <th>Qtde fibras</th>
+                        <th>Qtde açucar add</th>
+                        <th>Qtde gord trans</th>
+                        <th>Qtde gord saturada</th>
+                        <th>Kcal</th>
+                        <th>U.M</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="conteudoAlimentos">
+                    <tr>
+                        <td>Peito de frango</td>
+                        <td>Peito de frango sem pele cozido</td>
+                        <td>Proteína animal</td>
+                        <td>Aves</td>
+                        <td>32</td>
+                        <td>1</td>
+                        <td>3</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0.5</td>
+                        <td>159</td>
+                        <td>gramas</td>
+                        <td>
+                            <button type="button" class="button green">editar</button>
+                            <button type="button" class="button red">excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <header>
+                    <h2>Nova refeição</h2>
+                    <span class="modal-close" id="modalClose">&#10006;</span>
+                </header>
+                <form class="modal-form">
+                    <input type="text" class="modal-field" placeholder="Nome">
+                    <input type="text" class="modal-field" placeholder="Modo de preparo">
+                    <input type="text" class="modal-field" placeholder="Descrição">
+                    <input type="text" class="modal-field" placeholder="Apoio de decisão">
+                    <div class="dados-estaticos">
+                        <div class="grupo-campo">
+                            <label>Público Alvo:</label>
+                            <select id="selectPublico" class="modal-field" required>
+                                <option value="" disabled selected>Selecione o público alvo...</option>
+                            </select>
+                        </div>
+                        <div class="grupo-campo">
+                            <label>Refeição:</label>
+                            <select id="selectRefeicao" class="modal-field" required>
+                                <option value="" disabled selected>Selecione o tipo de refeição...</option>
+                            </select>
+                        </div>
+                        <div class="grupo-campo">
+                            <label>Restrições:</label>
+                            <select id="selectRestricao" class="modal-field" required>
+                                <option value="" disabled selected>Selecione as restrições...</option>
+                            </select>
+                        </div>
+                        <div class="grupo-campo">
+                            <label>Adicionar Alimentos:</label>
+                            <div class="linha-alimento">
+                                <select class="modal-field" id="selectAlimento" required>
+                                    <option value="" disabled selected>Selecione o alimento...</option>
+                                </select>
+                                <input type="number" class="modal-field" placeholder="QTDE">
+                                <select class="modal-field" required>
+                                    <option value="" disabled selected>Selecione a unidade de medida...</option>
+                                    <option value="gramas">gramas</option>
+                                    <option value="unidades">unidades</option>
+                                    <option value="ml">ml</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <footer class="modal-footer">
+                    <button class="button green">Salvar</button>
+                    <button class="button red">Cancelar</button>
+                </footer>
+            </div>
+        </div>
+        <div class="modal" id="modalAlimento">
+            <div class="modal-content">
+                <header>
+                    <h2>Novo alimento</h2>
+                    <span class="modal-close" id="closeModalAlimento">&#10006;</span>
+                </header>
+                <form class="modal-form">
+                    <input type="text" class="modal-field" placeholder="Nome">
+                    <input type="text" class="modal-field" placeholder="Descricao">
+                    <input type="text" class="modal-field" placeholder="Categoria">
+                    <input type="text" class="modal-field" placeholder="Enquadramento">
+                    <input type="number" class="modal-field" placeholder="Qtde proteína: ">
+                    <input type="number" class="modal-field" placeholder="Qtde carboidrato: ">
+                    <input type="number" class="modal-field" placeholder="Qtde lipídios: ">
+                    <input type="number" class="modal-field" placeholder="Qtde açucar add: ">
+                    <input type="number" class="modal-field" placeholder="Qtde gord trans: ">
+                    <input type="number" class="modal-field" placeholder="Qtde gord sat: ">
+                    <div class="dados-estaticos">
+                        <div class="grupo-campo">
+                            <label>Unidade de medida</label>
+                            <select class="modal-field" required>
+                                <option value="" disabled selected>Selecione a unidade de medida...</option>
+                                <option value="gramas">gramas</option>
+                                <option value="unidades">unidades</option>
+                                <option value="ml">ml</option>
+                            </select>
+                        </div>
+                        <div class="grupo-campo">
+                            <label>Categoria:</label>
+                            <select id="selectCategoria" class="modal-field" required>
+                                <option value="" disabled selected>Selecione a Categoria...</option>
+                            </select>
+                        </div>
+                        <div class="grupo-campo">
+                            <label>Enquadramentos:</label>
+                            <select id="selectEnquadramento" class="modal-field" required>
+                                <option value="" disabled selected>Selecione o Enquadramento...</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <footer class="modal-footer">
+                    <button onclick="handleClick()" class="button green">Salvar</button>
+                    <button class="button red">Cancelar</button>
+                </footer>
+            </div>
+        </div>
+    </main>
+    <footer>
+        Developer Riller Feitosa
+    </footer>
+</body>
+
+</html>
