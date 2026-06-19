@@ -205,18 +205,29 @@ const criarLinhaTabela = (alimento) => {
 // Listener do botão de Salvar do Modal
 btnSalvarAlimento.addEventListener('click', salvarDadosAlimento);
 
-// Listener do botão de visualização rápida da tabela
+// Listener do botão de visualização rápida da tabela de Alimentos
 btnVisualizarAlimentos.addEventListener('click', () => {
-    tabelaAlimentos.style.display = 'table';
+    const tabelaRefeicoes = document.getElementById('tableRefeicoes');
+    
+    // 1. Garante que a tabela de refeições vai sumir (remove a classe active)
+    if (tabelaRefeicoes) {
+        tabelaRefeicoes.classList.remove('active');
+    }
+    
+    // 2. Remove qualquer estilo inline antigo para não quebrar o CSS
+    tabelaAlimentos.style.display = ''; 
+    
+    // 3. Mostra a tabela de alimentos adicionando a classe active
+    tabelaAlimentos.classList.add('active');
+    
+    // 4. Força uma nova busca no banco de dados para atualizar os alimentos
     carregarAlimentos();
 });
 
-// Executa automaticamente ao carregar a página para popular os dados
+// Executa ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
-    // Esconde a tabela inicialmente se preferir ou já deixa carregada
-    carregarAlimentos();
-    
-    // Adiciona valores mockados iniciais para os selects foreign key enquanto você não puxa via API
+    // Apenas popula os selects provisórios, deixa para buscar os dados 
+    // quando o usuário clicar em "Visualizar todos os alimentos"
     popularSelectsProvisorios();
 });
 

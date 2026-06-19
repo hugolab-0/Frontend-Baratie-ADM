@@ -65,7 +65,7 @@
                         <th>Ações</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="conteudoRefeicoes">
                     <tr>
                         <td>Macarrão com Almôndegas</td>
                         <td>
@@ -169,11 +169,16 @@
                     <h2>Nova refeição</h2>
                     <span class="modal-close" id="modalClose">&#10006;</span>
                 </header>
-                <form class="modal-form">
+                <form class="modal-form" id="formRefeicao">
+                    <input type="hidden" id="idRefeicao" value="">
                     <input type="text" id="nomeRefeicao" class="modal-field" placeholder="nome" required>
-                    <input type="text" class="modal-field" placeholder="Modo de preparo">
+                    <input type="text" id="modoPreparoRefeicao" class="modal-field" placeholder="Modo de preparo">
                     <input type="text" id="descricaoRefeicao" class="modal-field" placeholder="Descrição">
-                    <input type="text" class="modal-field" placeholder="Apoio de decisão">
+                    <input type="text" id="apoioDecisaoRefeicao" class="modal-field" placeholder="Apoio de decisão">
+                    <div class="grupo-campo">
+                        <label>Imagem:</label>
+                        <input type="file" id="imgRefeicao" class="modal-field" accept="image/*">
+                    </div>
                     <div class="dados-estaticos">
                         <div class="grupo-campo">
                             <label>Público Alvo:</label>
@@ -195,17 +200,19 @@
                         </div>
                         <div class="grupo-campo">
                             <label>Adicionar Alimentos:</label>
+                            <div id="listaAlimentosRefeicao"></div>
                             <div class="linha-alimento">
-                                <select class="modal-field" id="selectAlimento" required>
+                                <select class="modal-field" id="selectAlimento">
                                     <option value="" disabled selected>Selecione o alimento...</option>
                                 </select>
-                                <input type="number" class="modal-field" placeholder="QTDE">
-                                <select class="modal-field" required>
+                                <input type="number" id="qtdeAlimento" class="modal-field" placeholder="QTDE">
+                                <select class="modal-field" id="selectUnidadeMedidaAlimento">
                                     <option value="" disabled selected>Selecione a unidade de medida...</option>
                                     <option value="gramas">gramas</option>
                                     <option value="unidades">unidades</option>
                                     <option value="ml">ml</option>
                                 </select>
+                                <button type="button" class="button orange" id="addAlimentoRefeicao">+</button>
                             </div>
                         </div>
                     </div>
