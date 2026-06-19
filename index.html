@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="./css/button.css">
     <link rel="stylesheet" href="./css/records.css">
     <link rel="stylesheet" href="./css/modal.css">
-    <script src="././arquivos js/main.js" defer></script>
+    <script src="././arquivos js/alimento.js" defer></script>
+    <script src="././arquivos js/refeicao.js" defer></script>
     <title>CRUD</title>
 </head>
 
@@ -162,16 +163,16 @@
                 </tbody>
             </table>
         </div>
-        <div class="modal" id="modal">
+        <div class="modal" id="modalRefeicao">
             <div class="modal-content">
                 <header>
                     <h2>Nova refeição</h2>
                     <span class="modal-close" id="modalClose">&#10006;</span>
                 </header>
                 <form class="modal-form">
-                    <input type="text" class="modal-field" placeholder="Nome" required>
+                    <input type="text" id="nomeRefeicao" class="modal-field" placeholder="nome" required>
                     <input type="text" class="modal-field" placeholder="Modo de preparo">
-                    <input type="text" class="modal-field" placeholder="Descrição">
+                    <input type="text" id="descricaoRefeicao" class="modal-field" placeholder="Descrição">
                     <input type="text" class="modal-field" placeholder="Apoio de decisão">
                     <div class="dados-estaticos">
                         <div class="grupo-campo">
@@ -222,14 +223,15 @@
                     <span class="modal-close" id="closeModalAlimento">&#10006;</span>
                 </header>
                 <form id="formAlimento" class="modal-form">
-                    <input type="text" id="nome" class="modal-field" placeholder="Nome" required>
-                    <input type="text" id="descricao" class="modal-field" placeholder="Descricao">
-                    <input type="number" id="proteina" class="modal-field" placeholder="Qtde proteína: " required>
-                    <input type="number" id="carboidrato" class="modal-field" placeholder="Qtde carboidrato: " required>
-                    <input type="number" id="lipidio" class="modal-field" placeholder="Qtde lipídios: " required>
-                    <input type="number" id="acucarAdd" class="modal-field" placeholder="Qtde açucar add: " required>
-                    <input type="number" id="gordTrans" class="modal-field" placeholder="Qtde gord trans: " required>
-                    <input type="number" id="gordSat" class="modal-field" placeholder="Qtde gord sat: " required>
+                    <input type="text"  id="nome" data-index="new" class="modal-field" placeholder="Nome" required>
+                    <input type="text"  id="descricao" class="modal-field" placeholder="Descricao">
+                    <input type="number" id="proteinas_g" class="modal-field" placeholder="Qtde proteína: " required>
+                    <input type="number" id="carboidratos_g" class="modal-field" placeholder="Qtde carboidrato: " required>
+                    <input type="number" id="lipidios_g" class="modal-field" placeholder="Qtde lipídios: " required>
+                    <input type="number" id="fibras_g" class="modal-field" placeholder="Qtde fibras: " required>
+                    <input type="number" id="acucar_adicionado_g" class="modal-field" placeholder="Qtde açucar add: " required>
+                    <input type="number" id="gorduras_trans_g" class="modal-field" placeholder="Qtde gord trans: " required>
+                    <input type="number" id="gorduras_saturadas_g" class="modal-field" placeholder="Qtde gord sat: " required>
                     <div class="dados-estaticos">
                         <div class="grupo-campo">
                             <label>Unidade de medida</label>
@@ -242,13 +244,13 @@
                         </div>
                         <div class="grupo-campo">
                             <label>Categoria:</label>
-                            <select id="selectCategoria" class="modal-field">
+                            <select id="id_categoria" class="modal-field">
                                 <option value="" disabled selected>Selecione a Categoria...</option>
                             </select>
                         </div>
                         <div class="grupo-campo">
                             <label>Enquadramentos:</label>
-                            <select id="selectEnquadramento" class="modal-field">
+                            <select id="id_enquadramento" class="modal-field">
                                 <option value="" disabled selected>Selecione o Enquadramento...</option>
                             </select>
                         </div>
